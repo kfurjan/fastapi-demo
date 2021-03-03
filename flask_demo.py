@@ -14,12 +14,12 @@ def home():
 
 @app.route("/perf")
 def perf_test():
-    time_now = time.perf_counter()
+    start_time = time.perf_counter()
 
     for _ in range(3):
         blocking_sleep()
 
-    elapsed = time.perf_counter() - time_now
+    elapsed = time.perf_counter() - start_time
     return {"Time elapsed": f"{elapsed:0.2f} seconds"}
 
 

@@ -22,19 +22,19 @@ def home():
     return {"Hello": "FastAPI!"}
 
 
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {"item_name": item.name, "item_id": item_id}
-
-
 @app.get("/perf")
 async def perf_test():
-    time_now = time.perf_counter()
+    start_time = time.perf_counter()
 
     await asyncio.gather(async_sleep(), async_sleep(), async_sleep())
 
-    elapsed = time.perf_counter() - time_now
+    elapsed = time.perf_counter() - start_time
     return {"Time elapsed": f"{elapsed:0.2f} seconds"}
+
+
+@app.put("/items/{item_id}")
+def update_item(item_id: int, item: Item):
+    return {"item_name": item.name, "item_id": item_id}
 
 
 if __name__ == "__main__":
